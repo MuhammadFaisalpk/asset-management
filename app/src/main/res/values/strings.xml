@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Asset Maintenance</string>
+    <string name="asset_management">Asset Management</string>
+    <string name="log_in">Log In</string>
+    <string name="your_email">Email</string>
+    <string name="your_password">Password</string>
+    <string name="signup">Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="welcome">Welcome</string>
+    <string name="base_url">https://702b-182-178-204-60.ngrok-free.app/asset-management/api/</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="department">Department</string>
+    <string name="designation">Designation</string>
+    <string name="search">Search</string>
+</resources>
