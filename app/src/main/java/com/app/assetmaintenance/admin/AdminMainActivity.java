@@ -1,13 +1,7 @@
-package com.app.assetmaintenance;
+package com.app.assetmaintenance.admin;
 
 import static com.app.assetmaintenance.utils.CommonMethods.volleyErrors;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,19 +11,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.app.assetmaintenance.R;
 import com.app.assetmaintenance.adapters.ComplainsAdapter;
 import com.app.assetmaintenance.models.ComplainsModel;
 import com.app.assetmaintenance.utils.SharedPrefClass;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,14 +34,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class AdminMainActivity extends AppCompatActivity {
 
     private String getComplains_endpoint = "getComplain";
     private EditText et_search;
     private TextView tv_no_complains;
     private ProgressBar progressbar;
     private RecyclerView rv_all_complains;
-    private FloatingActionButton fab_complain;
     ComplainsAdapter complainsAdapter;
     ArrayList<ComplainsModel> complainsArray = new ArrayList<>();
     private SharedPrefClass sharedClass;
@@ -53,25 +48,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_admin_main);
 
         initView();
         getAllComplains();
     }
 
     private void initView() {
-        sharedClass = new SharedPrefClass(MainActivity.this);
+        sharedClass = new SharedPrefClass(AdminMainActivity.this);
 
         et_search = findViewById(R.id.et_search);
         tv_no_complains = findViewById(R.id.tv_no_complains);
         progressbar = findViewById(R.id.progressbar);
         rv_all_complains = findViewById(R.id.rv_all_complains);
-        rv_all_complains.setLayoutManager(new LinearLayoutManager(MainActivity.this,
+        rv_all_complains.setLayoutManager(new LinearLayoutManager(AdminMainActivity.this,
                 LinearLayoutManager.VERTICAL, false));
-        fab_complain = findViewById(R.id.fab_complain);
-        fab_complain.setOnClickListener(view -> {
-            registerComplain();
-        });
 
         et_search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -94,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
                         rv_all_complains.setVisibility(View.VISIBLE);
                         tv_no_complains.setVisibility(View.GONE);
                         progressbar.setVisibility(View.GONE);
-                        complainsAdapter = new ComplainsAdapter(MainActivity.this,
-                                listNew, false);
+                        complainsAdapter = new ComplainsAdapter(AdminMainActivity.this,
+                                listNew, true);
                         rv_all_complains.setAdapter(complainsAdapter);
                     } else {
                         rv_all_complains.setVisibility(View.GONE);
@@ -105,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     rv_all_complains.setVisibility(View.VISIBLE);
                     progressbar.setVisibility(View.GONE);
-                    complainsAdapter = new ComplainsAdapter(MainActivity.this,
-                            complainsArray, false);
+                    complainsAdapter = new ComplainsAdapter(AdminMainActivity.this,
+                            complainsArray, true);
                     rv_all_complains.setAdapter(complainsAdapter);
                 }
             }
@@ -153,8 +144,8 @@ public class MainActivity extends AppCompatActivity {
                             rv_all_complains.setVisibility(View.VISIBLE);
                             tv_no_complains.setVisibility(View.GONE);
                             progressbar.setVisibility(View.GONE);
-                            complainsAdapter = new ComplainsAdapter(MainActivity.this,
-                                    complainsArray, false);
+                            complainsAdapter = new ComplainsAdapter(AdminMainActivity.this,
+                                    complainsArray, true);
                             rv_all_complains.setAdapter(complainsAdapter);
                         }
                     } catch (Exception exception) {
@@ -163,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         progressbar.setVisibility(View.GONE);
 
                         exception.printStackTrace();
-                        Toast.makeText(MainActivity.this, "Some error occurred! Try again later",
+                        Toast.makeText(AdminMainActivity.this, "Some error occurred! Try again later",
                                 Toast.LENGTH_SHORT).show();
                     }
 
@@ -173,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                     tv_no_complains.setVisibility(View.VISIBLE);
                     progressbar.setVisibility(View.GONE);
 
-                    volleyErrors(error, MainActivity.this);
+                    volleyErrors(error, AdminMainActivity.this);
                 }) {
 
             @Override
@@ -192,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
 
         jsonObjectRequest.setRetryPolicy(policy);
 
-        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(AdminMainActivity.this);
         requestQueue.add(jsonObjectRequest);
         jsonObjectRequest.setShouldCache(false);
 

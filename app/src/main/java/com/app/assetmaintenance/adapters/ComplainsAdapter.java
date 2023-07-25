@@ -10,8 +10,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.assetmaintenance.ComplainDetail;
+import com.app.assetmaintenance.admin.AdminComplainDetail;
 import com.app.assetmaintenance.R;
+import com.app.assetmaintenance.user.UserComplainDetail;
 import com.app.assetmaintenance.models.ComplainsModel;
 import com.bumptech.glide.Glide;
 
@@ -50,15 +51,22 @@ public class ComplainsAdapter extends RecyclerView.Adapter<ComplainsAdapter.MyVi
         Glide.with(mContext).load(image).fitCenter().into(holder.image);
 
         holder.details.setOnClickListener(view -> {
-            Intent intent = new Intent(mContext, ComplainDetail.class);
-            intent.putExtra("complain_id", Id);
-            mContext.startActivity(intent);
+            viewDetails(Id);
         });
         holder.itemView.setOnClickListener(view -> {
-            Intent intent = new Intent(mContext, ComplainDetail.class);
-            intent.putExtra("complain_id", Id);
-            mContext.startActivity(intent);
+            viewDetails(Id);
         });
+    }
+
+    private void viewDetails(int id) {
+        Intent intent;
+        if (isAdmin) {
+            intent = new Intent(mContext, AdminComplainDetail.class);
+        } else {
+            intent = new Intent(mContext, UserComplainDetail.class);
+        }
+        intent.putExtra("complain_id", id);
+        mContext.startActivity(intent);
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

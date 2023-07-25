@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".user.RegisterComplainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_complain"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/rl_photos"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/ic_photos_bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Upload Cover Photo"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:drawableLeftCompat="@drawable/ic_baseline_add_a_photo_24" />
+
+        <ImageView
+            android:id="@+id/iv_cover_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_desc"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bg_white_et_20"
+        android:gravity="start"
+        android:hint="@string/desc"
+        android:imeOptions="actionDone"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="16sp" />
+
+    <Spinner
+        android:id="@+id/sp_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/register" />
+
+</LinearLayout>

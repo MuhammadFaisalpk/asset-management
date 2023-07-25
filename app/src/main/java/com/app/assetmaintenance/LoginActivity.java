@@ -1,14 +1,12 @@
 package com.app.assetmaintenance;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -16,9 +14,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.app.assetmaintenance.admin.AdminMainActivity;
+import com.app.assetmaintenance.user.UserMainActivity;
 import com.app.assetmaintenance.utils.CommonMethods;
 import com.app.assetmaintenance.utils.LoadingDialog;
 import com.app.assetmaintenance.utils.SharedPrefClass;
@@ -66,14 +65,14 @@ public class LoginActivity extends AppCompatActivity {
         String email = et_email.getText().toString().trim();
         String password = et_password.getText().toString().trim();
 
-        loadingDialog.SetTitle("Please wait...");
-        loadingDialog.Cancelable(false);
-        loadingDialog.Show();
-
 
         if (!validateForm(email, password)) {
             return;
         }
+
+        loadingDialog.SetTitle("Please wait...");
+        loadingDialog.Cancelable(false);
+        loadingDialog.Show();
 
         JSONObject jsonObject = new JSONObject();
 
@@ -103,9 +102,9 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Intent intent;
                                 if (userType == 0) {
-                                    intent = new Intent(LoginActivity.this, AdminActivity.class);
+                                    intent = new Intent(LoginActivity.this, AdminMainActivity.class);
                                 } else {
-                                    intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    intent = new Intent(LoginActivity.this, UserMainActivity.class);
                                 }
                                 finish();
                                 startActivity(intent);
@@ -146,11 +145,11 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validateForm(String email, String password) {
         boolean valid = true;
 
-        if (!email.isEmpty() || android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             et_email.setError("Enter Valid Email");
             valid = false;
         }
-        if (!password.isEmpty()) {
+        if (password.isEmpty()) {
             et_password.setError("Enter Valid Password");
             valid = false;
         }

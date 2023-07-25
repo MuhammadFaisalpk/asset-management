@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".admin.AdminComplainDetail">
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_photos_bg" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="Description"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:text="Status"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="@drawable/bg_white_et"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Status"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:text="Assigned By"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_assign_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:text="Assigned By"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:text="Assigned Date"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_assign_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:text="Assigned Date"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:text="Assigned To"
+            android:textColor="@color/black" />
+
+        <Spinner
+            android:id="@+id/sp_assign_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="@string/update" />
+
+</LinearLayout>
